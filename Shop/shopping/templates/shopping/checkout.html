@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% block content %}
+    <!-- Start All Title Box -->
+    <div class="all-title-box">
+        <div class="container">
+            <div class="row">
+            </div>
+        </div>
+    </div>
+    <!-- End All Title Box -->
+
+    <!-- Start Cart  -->
+    <div class="cart-box-main">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-lg-6 mb-3">
+                    <div class="checkout-address">
+                        <div class="title-left">
+                            <h3 style="direction:rtl;text-align:right;">اطلاعات کارت بانکی</h3>
+                        </div>
+                        <form class="needs-validation" novalidate>
+                            <div class="row">
+                                <div style="direction:rtl;text-align:right;" class="col-md-6 mb-3">
+                                    <label for="cc-name">شماره کارت</label>
+                                    <input type="text" class="form-control" id="cc-name" placeholder="" required> 
+                                    <div class="invalid-feedback"> Name on card is required </div>
+                                </div>
+                                <div style="direction:rtl;text-align:right;" class="col-md-6 mb-3">
+                                    <label for="cc-number">رمز</label>
+                                    <input type="text" class="form-control" id="cc-number" placeholder="" required>
+                                    <div class="invalid-feedback"> Credit card number is required </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div style="direction:rtl;text-align:right;" class="col-md-3 mb-3">
+                                    <label for="cc-expiration">انقضاء</label>
+                                    <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
+                                    <div class="invalid-feedback"> Expiration date required </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label for="cc-expiration">CVV</label>
+                                    <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+                                    <div class="invalid-feedback"> Security code required </div>
+                                </div>
+                                <div class="col-12 d-flex shopping-box"> <a href="{% url 'order' %}" class="ml-auto btn hvr-hover">ثبت</a> </div>
+                                
+                            </div>
+                            <hr class="mb-4">
+                            <div>
+                                <label>{{ request.user.address }}</label>
+                                <div class="col-12 d-flex shopping-box"> <a href="{% url 'update' %}" class="ml-auto btn hvr-hover">تغییر آدرس از</a> </div>
+                            </div>
+                            <hr class="mb-1"> </form>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-6 mb-3">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12">
+                            <div class="odr-box">
+                                <div class="title-left">
+                                    <h3 style="direction:rtl;text-align:right;">سفارشات شما</h3>
+                                </div>
+                                <div class="rounded p-2 bg-light">
+                                    {% for order in orders %}
+                                    <div class="media mb-2 border-bottom">
+                                        <div class="media-body"> <a href="detail.html">{{order.product.title}}</a>
+                                            <div class="small text-muted">Price: ${{order.product.Price}} <span class="mx-2">|</span> Qty: {{order.quantity}} <span class="mx-2">|</span> Subtotal: ${{order.Sumprice}}</div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-12">
+                            <div class="order-box">
+                                <hr>
+                                <div class="d-flex gr-total">
+                                    <h5>{{model.sumprice}}</h5>
+                                    <div class="ml-auto h5">مجموع</div>
+                                </div>
+                                <hr> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- End Cart -->
+{% endblock %}

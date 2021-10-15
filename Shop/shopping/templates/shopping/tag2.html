@@ -1,0 +1,21 @@
+
+<div class="filter-sidebar-left">
+    <div class="title-left">
+        <h3>دسته بندی ها</h3>
+    </div>
+    <div class="list-group list-group-collapse list-group-sm list-group-tree" id="list-group-men" data-children=".sub-men">
+        <div class="list-group-collapse sub-men">
+            {% for category in model %}
+            <a class="list-group-item list-group-item-action" href="#{{category}}" data-toggle="collapse" aria-expanded="true" aria-controls="sub-men1">{{category}} <small class="text-muted">(100)</small>
+        </a>
+            <div class="collapse show" id="{{category}}" data-parent="#list-group-men">
+                <div class="list-group">
+                    {% for i in category.relation.all %}
+                    <a href="{%url 'category' i.pk%}" class="list-group-item list-group-item-action">{{i}} <small class="text-muted">(20)</small></a>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

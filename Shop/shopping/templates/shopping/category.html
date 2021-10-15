@@ -1,0 +1,6 @@
+<h1>OK</h1>
+{% for cat in cats %}
+    {{cat}} <br>
+    {{cat.Price}} <br>
+    <img src="{{ cat.image_main.url }}" alt=""> <br>
+{% endfor %}

@@ -1,0 +1,167 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% load tag %}
+    <!-- Start All Title Box -->
+    <div class="all-title-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>علاقه مندی ها</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End All Title Box -->
+
+    <!-- Start Shop Page  -->
+    <div class="shop-box-inner">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-sm-12 col-xs-12 sidebar-shop-left">
+                    <div class="product-categori">
+                        {% Cat %}
+
+                    </div>
+                </div>
+                <div class="col-xl-9 col-lg-9 col-sm-12 col-xs-12 shop-content-right">
+                    <div class="right-product-box">
+
+                        <div class="row product-categorie-box">
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
+                                    <div class="row">
+                                        {% for cat in favorite %}
+                                        <div class="col-lg-3 col-md-6 special-grid top-featured" style="margin-top: 20px;">
+                                            <div class="hover-team"  style="border: solid 1px #767676;border-radius: 11px;">
+                                                <div class="our-team" style="border-top-left-radius: 10px;border-top-right-radius: 10px;"> <img style="width: 255px; height:190px ;" src="{{cat.product_like.image_main.url}}" alt="" />
+                                                    <div class="team-content">
+                                                        <h3 class="title">{{cat.product_like.title}}</h3> <span class="post">Web Developer</span> </div>
+                                                        <ul class="social">
+                                                            <li><a href="{% url 'dislike' cat.id %}" data-toggle="tooltip" data-placement="right" title="DisLike"><i class="fas fa-heart"></i></a></li>
+                                                            <li><a href="{% url 'detail' cat.id %}" data-toggle="tooltip" data-placement="right" title="Views"><i class="fas fa-eye"></i></a></li>
+                                                            <li>
+                                                                <a title="add cart" data-toggle="tooltip" data-placement="right" href="{% url 'cart' cat.id %}"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="30" viewBox="0 0 172 172" style="fill:#000000;margin-bottom: -4px;margin-top: 0px;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#ffffff"><path d="M11.46667,11.46667c-2.06765,-0.02924 -3.99087,1.05709 -5.03322,2.843c-1.04236,1.78592 -1.04236,3.99474 0,5.78066c1.04236,1.78592 2.96558,2.87225 5.03322,2.843h10.7724c1.29517,0 2.37592,0.81106 2.74349,2.06042l24.43385,83.06614c2.14446,7.29116 8.88821,12.34011 16.49453,12.34011h62.93229c7.73092,0 14.55694,-5.22483 16.59532,-12.67604l14.89323,-54.61224c0.47113,-1.72445 0.11102,-3.56997 -0.97382,-4.99081c-1.08485,-1.42084 -2.7703,-2.25442 -4.55795,-2.25424h-22.93333h-28.66667v5.73333v32.02604l13.14636,-13.14636c2.24173,-2.24173 5.86556,-2.24173 8.10729,0c2.24173,2.24173 2.24173,5.86556 0,8.10729l-22.93333,22.93333c-1.118,1.118 -2.58591,1.67969 -4.05364,1.67969c-1.46773,0 -2.93564,-0.56169 -4.05364,-1.67969l-22.93333,-22.93333c-2.24173,-2.24173 -2.24173,-5.86556 0,-8.10729c2.24173,-2.24173 5.86556,-2.24173 8.10729,0l13.14636,13.14636v-32.02604v-5.73333h-48.65495l-7.08828,-24.10911c-0.00373,0 -0.00747,0 -0.0112,0c-1.78818,-6.07784 -7.40968,-10.29089 -13.73984,-10.29089zM91.73333,45.86667h11.46667v-28.66667c0,-3.1648 -2.56853,-5.73333 -5.73333,-5.73333c-3.1648,0 -5.73333,2.56853 -5.73333,5.73333zM68.8,131.86667c-6.33533,0 -11.46667,5.13133 -11.46667,11.46667c0,6.33533 5.13133,11.46667 11.46667,11.46667c6.33533,0 11.46667,-5.13133 11.46667,-11.46667c0,-6.33533 -5.13133,-11.46667 -11.46667,-11.46667zM126.13333,131.86667c-6.33533,0 -11.46667,5.13133 -11.46667,11.46667c0,6.33533 5.13133,11.46667 11.46667,11.46667c6.33533,0 11.46667,-5.13133 11.46667,-11.46667c0,-6.33533 -5.13133,-11.46667 -11.46667,-11.46667z" style="height: 6px;
+                               margin-top: 23px;
+                           "></path></g></g></svg></a>
+                                                           </li>
+                                                        </ul>
+                                                    <div class="icon"> <i class="fa fa-plus" aria-hidden="true"></i> </div>
+                                                </div>
+                                                <div  style="text-align: center;" class="team-description product-main">
+                                                    <p style="font-size: 23px;">{{cat.product_like}} </p>
+                                                    <a class="btn hvr-hover" href="{% url 'detail' cat.product_like.pk %}">Shop New</a>
+                                                </div>
+                                                <hr class="my-0"> </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="list-view">
+                                    <div class="list-view-box">
+                                        <div class="row">
+                                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                                <div class="products-single fix">
+                                                    <div class="box-img-hover">
+                                                        <div class="type-lb">
+                                                            <p class="new">New</p>
+                                                        </div>
+                                                        <img src="images/img-pro-01.jpg" class="img-fluid" alt="Image">
+                                                        <div class="mask-icon">
+                                                            <ul>
+                                                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+                                                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
+                                                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                                            </ul>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6 col-lg-8 col-xl-8">
+                                                <div class="why-text full-width">
+                                                    <h4>Lorem ipsum dolor sit amet</h4>
+                                                    <h5> <del>$ 60.00</del> $40.79</h5>
+                                                    <p>Integer tincidunt aliquet nibh vitae dictum. In turpis sapien, imperdiet quis magna nec, iaculis ultrices ante. Integer vitae suscipit nisi. Morbi dignissim risus sit amet orci porta, eget aliquam purus
+                                                        sollicitudin. Cras eu metus felis. Sed arcu arcu, sagittis in blandit eu, imperdiet sit amet eros. Donec accumsan nisi purus, quis euismod ex volutpat in. Vestibulum eleifend eros ac lobortis aliquet.
+                                                        Suspendisse at ipsum vel lacus vehicula blandit et sollicitudin quam. Praesent vulputate semper libero pulvinar consequat. Etiam ut placerat lectus.</p>
+                                                    <a class="btn hvr-hover" href="#">Add to Cart</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="list-view-box">
+                                        <div class="row">
+                                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                                <div class="products-single fix">
+                                                    <div class="box-img-hover">
+                                                        <div class="type-lb">
+                                                            <p class="sale">Sale</p>
+                                                        </div>
+                                                        <img src="images/img-pro-02.jpg" class="img-fluid" alt="Image">
+                                                        <div class="mask-icon">
+                                                            <ul>
+                                                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+                                                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
+                                                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                                            </ul>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6 col-lg-8 col-xl-8">
+                                                <div class="why-text full-width">
+                                                    <h4>Lorem ipsum dolor sit amet</h4>
+                                                    <h5> <del>$ 60.00</del> $40.79</h5>
+                                                    <p>Integer tincidunt aliquet nibh vitae dictum. In turpis sapien, imperdiet quis magna nec, iaculis ultrices ante. Integer vitae suscipit nisi. Morbi dignissim risus sit amet orci porta, eget aliquam purus
+                                                        sollicitudin. Cras eu metus felis. Sed arcu arcu, sagittis in blandit eu, imperdiet sit amet eros. Donec accumsan nisi purus, quis euismod ex volutpat in. Vestibulum eleifend eros ac lobortis aliquet.
+                                                        Suspendisse at ipsum vel lacus vehicula blandit et sollicitudin quam. Praesent vulputate semper libero pulvinar consequat. Etiam ut placerat lectus.</p>
+                                                    <a class="btn hvr-hover" href="#">Add to Cart</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="list-view-box">
+                                        <div class="row">
+                                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                                <div class="products-single fix">
+                                                    <div class="box-img-hover">
+                                                        <div class="type-lb">
+                                                            <p class="sale">Sale</p>
+                                                        </div>
+                                                        <img src="images/img-pro-03.jpg" class="img-fluid" alt="Image">
+                                                        <div class="mask-icon">
+                                                            <ul>
+                                                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+                                                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
+                                                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                                            </ul>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6 col-lg-8 col-xl-8">
+                                                <div class="why-text full-width">
+                                                    <h4>Lorem ipsum dolor sit amet</h4>
+                                                    <h5> <del>$ 60.00</del> $40.79</h5>
+                                                    <p>Integer tincidunt aliquet nibh vitae dictum. In turpis sapien, imperdiet quis magna nec, iaculis ultrices ante. Integer vitae suscipit nisi. Morbi dignissim risus sit amet orci porta, eget aliquam purus
+                                                        sollicitudin. Cras eu metus felis. Sed arcu arcu, sagittis in blandit eu, imperdiet sit amet eros. Donec accumsan nisi purus, quis euismod ex volutpat in. Vestibulum eleifend eros ac lobortis aliquet.
+                                                        Suspendisse at ipsum vel lacus vehicula blandit et sollicitudin quam. Praesent vulputate semper libero pulvinar consequat. Etiam ut placerat lectus.</p>
+                                                    <a class="btn hvr-hover" href="#">Add to Cart</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Shop Page -->
+    {% endblock %}
