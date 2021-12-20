@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{{update}} <br>
+<!-- Start All Title Box -->
+    <div class="all-title-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>سبدخرید</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End All Title Box -->
+
+    <!-- Start Cart  -->
+    <div class="cart-box-main">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="table-main table-responsive" style="border-radius: 12px;">
+                        <table class="table">
+                            <thead style="background-color: #000;">
+                                <tr style="text-align: center;">
+                                    <th>تصاویر</th>
+                                    <th>نام</th>
+                                    <th>قیمت</th>
+                                    <th>تعداد</th>
+                                    <th>مجموع قیمت</th>
+                                    <th>حذف از سبدخرید</th>
+                                </tr>
+                            </thead>
+                            <tbody style="background-color: #c8c8c84f;color: black;
+                            ">
+                                {% for blog in blogs %}
+                                <tr>
+                                    <td class="thumbnail-img">
+                                        <a href="{% url 'detail' blog.product.id %}">
+									<img class="img-fluid shadow-lg" src="{{blog.product.image_main.url}}" alt="" />
+								</a>
+                                    </td>
+                                    <td class="name-pr" style="text-align: center;">
+                                        <a class="around" href="#">
+									{{blog.product.title}}
+								</a>
+                                    </td>
+                                    <td class="price-pr" style="text-align: center;">
+                                        <p class="around" style="font-weight: 600;">{{blog.product.Price}}</p>
+                                    </td>
+                                    <form action="" method="POST">
+                                        {% csrf_token %}
+                                        <td class="quantity-box" style="text-align: center;">
+                                        <input type="number" name='num' size="4" value="{{blog.quantity}}" min="0" max="{{ blog.product.number }}" step="1" class="c-input-text qty text">
+                                        <input type="submit"  value="&#x2713;">
+                                        <input type="hidden" name='sh' style="width: 0px; border-color: white;color: white;background-color: white;" value="{{blog.product.id}}"></td>
+                                    </form>
+                                    <td class="total-pr">
+                                        <p class="around" style="font-weight: 600;">{{blog.Sumprice}}</p>
+                                    </td>
+                                    <td class="remove-pr">
+                                        <a href="{% url 'Cart:delete' blog.product.id %}">
+									<i style="color: red;" class="fas fa-times"></i>
+								</a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row my-5">
+                <div class="col-lg-6 col-sm-6">
+                    <div class="coupon-box">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-append">
+                                <a href="{% url 'Cart:ordercard' %}" class="btn btn-theme" type="button">ثبت خرید</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-sm-12"></div>
+                <div class="col-lg-4 col-sm-12">
+                    <div class="order-box">
+                        <div class="d-flex gr-total">
+                            <h5>مجموع قیمت ها</h5>
+                            <div class="ml-auto h5"> {{order.sumprice}}</div>
+                        </div>
+                        <hr> 
+                    </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- End Cart -->
+
+{% endblock %}

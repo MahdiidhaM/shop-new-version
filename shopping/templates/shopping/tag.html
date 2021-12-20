@@ -1,0 +1,158 @@
+{% load static %}
+<header class="main-header">
+    <!-- Start Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
+        <div class="container">
+            <!-- Start Header Navigation -->
+            <div class="navbar-header">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa fa-bars"></i>
+            </button>
+            </div>
+            <!-- End Header Navigation -->
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="navbar-menu">
+                <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
+                    {% if request.path == '/' %}
+                    <li class="nav-item active"><a class="nav-link" href="{% url 'productView' %}">خانه</a></li>
+                    {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'productView' %}">خانه</a></li>
+                    {% endif %}
+                    <li class="dropdown megamenu-fw">
+                        <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">دسته بندی</a>
+                        <ul class="dropdown-menu megamenu-content" role="menu">
+                            <li>
+                                <div class="row">
+                                    {% for cat in model %}
+                                    <div class="col-menu col-md-3">
+                                        <h6 class="title">{{cat}}</h6>
+                                        <div class="content">
+                                            <ul class="menu-col">
+                                                {% for i in cat.relation.all %}
+                                                <li><a href="{% url 'category' i.pk %}">{{i}}</a></li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                    <!-- end col-3 -->
+                                </div>
+                                <!-- end row -->
+                            </li>
+                        </ul>
+                    </li>
+                    {% if request.user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">خروج</a></li>
+                    {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">ورود</a></li>
+                    {% endif %}
+                    {% if request.user.is_authenticated %}
+                        {% if request.path == '/viewlike/' %}
+                            <li class="nav-item active"><a class="nav-link" href="{% url 'viewlike' %}">علاقه مندی ها</a></li>
+                        {% else %}
+                            <li class="nav-item"><a class="nav-link" href="{% url 'viewlike' %}">علاقه مندی ها</a></li>
+                        {% endif %}
+                    {% endif %}
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+            <!-- Start Atribute Navigation -->
+            <div class="attr-nav">
+                <ul>
+                    
+                    <li class="search-product" style="width: 71%" >
+                        <div>
+                            <form action="{% url 'search' %}" method="POST">
+                                {% csrf_token %}
+                                <input class="form-control" name="search" placeholder="Search..." type="text" style="border-radius: 14px;background-color: #e8e8e8;">                            
+                            <button type="submit" style="border-bottom-right-radius: 14px;border-top-right-radius: 14px;background-color: #e8e8e8;color: black;"> 
+                                <i class="fa fa-search"></i> </button>
+                            </form>
+                        </div>    
+                    </li>
+                    <li class="side-menu">
+                    <a href="{% url 'Cart:carttoral' %}">
+                    <i class="fa fa-shopping-bag"></i>
+                    {% if request.user.is_authenticated %}
+                        <span style="margin-left: 5px;background-color: red;border-radius: 27px;padding-top: 4px;color: white;" class="badge">{{ order.sumitem }}</span>
+                    
+                    {% endif %}
+                </a>
+                </li>
+            </div>
+            <!-- End Atribute Navigation -->
+        </div>
+        <!-- Start Side Menu -->
+        <div class="side">
+            <a href="#" class="close-side"><i class="fa fa-times"></i></a>
+            <li class="cart-box" style="border-radius: 11px;">
+                {% if request.user.is_authenticated %}
+                <ul class="cart-list">
+                    <h3 style="font-size: 15px;font-weight: 600;padding: 4px;text-align: center; background-color: #d0d0d0; border-radius: 11px 11px 0 0;" ><strong style="color: rgb(0, 0, 0);font-size: 18px;">{{request.user.username}} </strong> </span></h3>
+                    {% for i in modelcart %}
+                    <li class='cart'>
+                        <a href="#" class="photo"><img src="{{i.product.image_main.url}}" class="cart-thumb" alt="" /></a>
+                        <h6><a href="#">{{i.product.title}} </a></h6>
+                        <p>{{i.quantity}}x - <span class="price">${{i.product.Price}}</span></p>
+                    </li>
+                    {% endfor %}
+                    <li class="total">
+                        <div >
+                            <span style="font-size: 15px;font-weight: 600;position: relative" class="float-right"><strong style="color: black;font-size: 18px;position: relative;; right: 55%;">${{order.sumprice}}</strong>:مجموع </span>
+                        </div>
+                        <br>
+                        <div class="text-center mt-3">
+                            <a style="font-size: 14px;margin-top: 5px;position: relative; left: 3%;" href="{% url 'Cart:carttoral' %}" class="btn btn-default hvr-hover btn-cart">سبد خرید</a> 
+                        </div>
+                    </li>
+                </ul>
+                {% else %}
+                <a href="{% url 'login' %}">Login</a>
+                {% endif %}
+            </li>
+        </div>
+        <!-- End Side Menu -->
+    </nav>
+    <!-- End Navigation -->
+</header>
+<script>
+    // console.log('ok')
+    // var i = [1]
+    // i.forEach(element => {
+    //     // console.log(Number(i)+1)
+    //     if (element/2 === 1 ){
+    //         console.log(element)
+            
+    //     }else{
+    //         while(i<10){i.append(i++)}
+    //     }
+    // }); 
+    // let i = []
+    // while (i<10){
+    //     i ++;
+        
+        
+    // }
+    // if (i/2 === 3/2 ){
+    //         console.log(i);
+            
+    //     };
+    var cart = document.querySelector('.cart-list')
+    var i = [1,2]
+    i.forEach((number) => {
+        Array.from(cart.children).forEach(element =>{
+            if (element.classList.contains('cart')){
+            console.log(element)
+        }
+        // console.log(typeof(number))
+        
+            if (number/2 === 1){
+                console.log(number)
+            }
+        })
+        
+        
+    })
+        
+</script>
