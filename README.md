@@ -1,6 +1,6 @@
 # shop-new-version
 
-Visit [site](shoppingnewdjango.pythonanywhere.com)
+Visit shoppingnewdjango.pythonanywhere.com
 
 I just wrote Back-end this site
                                                  
