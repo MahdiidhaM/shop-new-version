@@ -1,6 +1,6 @@
 # shop-new-version
 http://github.com – automatic! [GitHub](http://github.com) 
-Visit shoppingnewdjango.pythonanywhere.com
+[Visit] (shoppingnewdjango.pythonanywhere.com)
 
 I just wrote Back-end this site
                                                  
