@@ -1,7 +1,6 @@
 # shop-new-version
-http://github.com – automatic! [GitHub](http://github.com) 
 
-[Visit](http://shoppingnewdjango.pythonanywhere.com)
+Visit [Site](http://shoppingnewdjango.pythonanywhere.com)
 
 I just wrote Back-end this site
                                                  
@@ -12,4 +11,5 @@ register with sms,
 favorite page,
 cart page,
 voting for each products and show the most vote,
+search,
 and more...
