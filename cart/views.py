@@ -6,7 +6,7 @@ from shopping.models import Products
 from shopping.mixins import SuperRequiredMixin
 from django.views.generic import ListView
 
-# Show cart user 
+# Show user cart 
 def order(request):
     if request.user.is_authenticated:
         user = request.user
