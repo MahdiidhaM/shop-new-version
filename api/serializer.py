@@ -25,8 +25,6 @@ class CartSerializer(serializers.ModelSerializer):
         return super().create(validated_data)
 
     def update(self, instance, validated_data):
-        print(validated_data)
-        print('=====')
         instance.quantity = validated_data.get('quantity', instance.quantity)
         instance.save()
         return instance
