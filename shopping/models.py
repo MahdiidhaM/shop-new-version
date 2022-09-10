@@ -56,16 +56,16 @@ class Products(models.Model):
     
 class Comment(models.Model):
     text = models.TextField()
-    author = models.ForeignKey(User,on_delete=models.CASCADE)
-    comment = models.ForeignKey(Products,on_delete=models.CASCADE)
+    author = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
+    comment = models.ForeignKey(Products, blank=True, null=True, on_delete=models.CASCADE)
     date = DateField(auto_now_add=True)
     def __srt__(self):
         return str(self.author) + ' ' + str(self.comment)
 
 
 class Like(models.Model):
-    product_like = models.ForeignKey(Products,on_delete=models.CASCADE)
-    user_like = models.ForeignKey(User,on_delete=models.CASCADE)
+    product_like = models.ForeignKey(Products, blank=True, null=True, on_delete=models.CASCADE)
+    user_like = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
     def __srt__(self):
         return self.user_like + self.product_like
 
